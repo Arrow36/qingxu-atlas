@@ -42,6 +42,13 @@ jobs:
         env:
           GITHUB_PAGES: "true"
 
+      - name: Normalize GitHub Pages asset paths
+        run: |
+          if [ -d dist/client/qingxu-atlas/_next ]; then
+            mv dist/client/qingxu-atlas/_next dist/client/_next
+            rmdir dist/client/qingxu-atlas
+          fi
+
       - name: Disable Jekyll processing
         run: touch dist/client/.nojekyll
 
